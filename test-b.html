@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>魏晗 - 简历</title>
+    <link rel="stylesheet" href="test.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="profile">
+        <div class="profile-center">
+          <h1>魏晗</h1>
+          <p>
+            电话：
+            <a href="tel:15385477920">15385477920</a>
+            <span class="sep">|</span>
+            邮箱：
+            <a href="mailto:1182131198@qq.com">1182131198@qq.com</a>
+          </p>
+          <p>年龄：25 岁</p>
+          <p>
+            当前状态：在职
+            <span class="sep">|</span>
+            意向城市：上海 / 杭州
+            <span class="sep">|</span>
+            求职意向：Agent Harness / 大模型应用算法
+          </p>
+        </div>
+        <div class="photo-box" aria-label="证件照">
+          <img src="image.png" alt="魏晗证件照" />
+        </div>
+      </header>
+
+      <section class="resume-section education-section">
+        <h2>教育经历</h2>
+        <div class="row-block">
+          <div>
+            <div class="line-title">
+              <strong>中国海洋大学</strong>
+              <span class="tag">双一流</span>
+              <span class="tag">985</span>
+              <span class="tag">211</span>
+            </div>
+            <p>计算机科学与技术 硕士 全日制</p>
+          </div>
+          <div class="right-meta">
+            <p>2022.09 - 2025.06</p>
+            <p>成绩排名：前 10%</p>
+          </div>
+        </div>
+        <div class="row-block">
+          <div>
+            <div class="line-title">
+              <strong>郑州大学</strong>
+              <span class="tag">211</span>
+              <span class="tag">双一流</span>
+            </div>
+            <p>本科 全日制</p>
+          </div>
+          <div class="right-meta">
+            <p>2017.09 - 2021.06</p>
+            <p>成绩排名：前 10%</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="resume-section">
+        <h2>工作经历</h2>
+        <div class="row-block work-item">
+          <div>
+            <div class="line-title">
+              <strong>京东零售</strong>
+              <span>大模型应用算法</span>
+            </div>
+          </div>
+          <div class="right-meta">
+            <p>2025.06 - 至今</p>
+          </div>
+          <p class="work-summary">京东 OSDP 社区成员，OxyGent 核心开发者（1.8k+ Star），主要负责 Agent Harness、评测闭环与后训练。</p>
+        </div>
+
+      </section>
+
+      <section class="resume-section">
+        <h2>项目经历</h2>
+
+        <article class="project">
+          <div class="project-title">
+            <strong>AI 办公 Agent Harness</strong>
+            <span>Tool Learning / Tool-use Infrastructure / Self-evolution</span>
+            <time>2026.02 - 至今</time>
+          </div>
+          <p class="project-summary">负责京东内部办公场景 Agent Harness 全链路设计与落地，基于 <strong>CLI + GUI 混合执行机制</strong>（非纯 CLI Agent 或纯 GUI Agent），覆盖数据分析、文档/内容、研发 CICD 十余个平台。6 月中上线后，<strong>o2 日均调用 5 万次</strong>，<strong>DAU 3000+</strong>，三类核心任务成功率提升 <strong>27%</strong>，相比基于 MCP 的方案 token 降低 <strong>80%</strong>。</p>
+          <div class="detail-group">
+            <h4>【平台能力探索与工具知识生成】</h4>
+            <ul>
+              <li>设计基于状态转移的主动探索机制，将平台操作建模为「候选动作执行 → DOM/路由/接口响应观测 → 目标态判定」，减少对人工文档和固定页面路径的依赖。</li>
+              <li>对探索得到的候选路径进行接口、路由、DOM 状态的交叉验证，并通过自动回放过滤不可复现路径，提升工具路径的稳定性。</li>
+              <li>将可复现路径结构化为工具知识，包含意图、入口、参数 schema、前置条件、执行步骤、成功判据和失败类型，并同步到 <strong>LLM-wiki</strong> 与 <strong>o2 CLI 能力包</strong>。</li>
+              <li>建立工具知识更新流程，使平台路径变化后可通过重新探索和回放验证生成新版本能力描述。</li>
+            </ul>
+          </div>
+          <div class="detail-group">
+            <h4>【工具检索、调度与执行层】</h4>
+            <ul>
+              <li>设计工具发现链路，结合 <strong>o2 list/search/discover</strong> 的结构化检索与 <strong>LLM-wiki</strong> 语义召回，根据用户意图、上下文状态、工具前置条件和成功判据召回候选工具。</li>
+              <li>建设统一执行层，将 Agent 调用抽象为标准 tool-use 接口，由 o2 调度底层 <strong>Agent-friendly CLI</strong>，屏蔽不同平台的鉴权、参数、页面结构和执行方式差异。</li>
+              <li>实现 CLI + GUI 混合执行：探测阶段即确定每条路径的最佳 backend（<strong>接口调用 / DOM 自动化 / 多模态识别</strong>），执行时直接路由到对应方式，非固定降级顺序，使平台变更被执行层吸收而不暴露给上层 Agent。</li>
+              <li>针对跨平台长程任务，引入 <strong>goal 持久化</strong>、<strong>上下文压缩</strong>和基于 <strong>StopReason</strong> 的局部重规划机制，降低目标漂移、上下文膨胀和单步失败带来的任务中断。</li>
+            </ul>
+          </div>
+          <div class="detail-group">
+            <h4>【Trace 回流与能力自修复】</h4>
+            <ul>
+              <li>建设线上 trace 回流链路，将失败样本按平台、工具、步骤、StopReason 聚合，用于识别页面变更、路径失效、参数缺失和工具描述不准确等问题。</li>
+              <li>基于失败断点触发定向重探，由 Agent 重新探索页面路径并生成候选修复方案，再通过自动回放验证候选路径是否可复现。</li>
+              <li>设计工具发布前评估流程，结合 goal 完成度、trace 执行链路和 LLM 评估结果，对候选修复进行自动评分与人工 review。</li>
+              <li>形成「线上失败归因 → 定向重探 → 路径重建 → 回放验证 → 评估发布」的能力自修复链路，持续更新 <strong>LLM-wiki</strong> 与 <strong>o2 能力包</strong>。</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-title">
+            <strong>群策导购智能体</strong>
+            <span>多角色群聊 Agent / 记忆机制 / SFT-GRPO 闭环</span>
+            <time>2025.08 - 2026.01</time>
+          </div>
+          <p class="project-summary">面向社群 AI 导购场景，负责多角色群聊 AI 助手的 Agent 编排、记忆消费与后训练迭代；在<strong>试金石 A/B 实验</strong>中，对命中品类用户展示群聊入口，相比不展示入口对照组，消息中心归因成交金额提升 <strong>5.87%</strong>，归因成交单量提升 <strong>1.00%</strong>，订单转化率提升 <strong>1.07%</strong>。</p>
+          <div class="detail-group">
+            <h4>【上下文与记忆机制】</h4>
+            <ul>
+              <li>设计 RouterAgent + 多 SubAgent 编排机制，由 RouterAgent 结合群聊上下文、触发事件和角色优先级判断是否发言、由谁发言，并将促销、选品、科普、风控、陪聊等职责域隔离到对应 SubAgent。</li>
+              <li>按感官记忆、事实性记忆、情景记忆、对话记忆、工作记忆、关系记忆等类型分层组织，基于语义向量召回与 KV 精确召回双路并行检索，注入前做冲突与噪声过滤；记忆更新通过批量合并、冲突消解和过期降权，避免弱画像覆盖用户当前明确表达的硬约束。</li>
+            </ul>
+          </div>
+          <div class="detail-group">
+            <h4>【蒸馏与后训练】</h4>
+            <ul>
+              <li>构建多模型蒸馏数据：对同一 query 分别调用 Gemini、Claude、GPT、Kimi 生成候选回答，再通过群体投票式 GSB 评估筛选单 query 最优回答，并用人工抽样复核准确性，最终沉淀为 SFT 和 GRPO 训练数据。</li>
+              <li>围绕工具调用、合规边界和表达方式设计 Reward Model 与训练闭环：SFT 先完成任务范式与工具调用能力对齐，将工具调用准确率从 <strong>65%</strong> 提升至 <strong>78%</strong>；GRPO 再做多目标强化对齐，进一步提升至 <strong>92%</strong>。</li>
+            </ul>
+          </div>
+          <div class="detail-group">
+            <h4>【评测与数据迭代】</h4>
+            <ul>
+              <li>搭建记忆使用评测集，在固定用户问题和商品目录的前提下，仅改变注入给 Agent 的记忆内容，评估其对商品推荐相关性和回复质量的影响；在 12 类场景、600 个样本、6000 条 GSB 评测中，10 分制下引入完整记忆后推荐相关性提升 <strong>+1.465</strong>，回复质量提升 <strong>+1.688</strong>。</li>
+              <li>搭建后训练离线评测库，沉淀 <strong>3000</strong> 条 GT 标注数据，覆盖工具调用、记忆消费、合规边界和表达质量等维度；采用规则验证 + GSB 评估策略效果，并结合线上 bad case 回流离线评测集，调整 reward 策略占比并迭代训练，将工具调用准确率进一步优化至 <strong>97%</strong>。</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-title">
+            <strong>OxyGent 多智能体开源框架</strong>
+            <span>核心能力建设 / Skill 体系 / 训练数据回流</span>
+            <time>2025.06 - 2026.01</time>
+          </div>
+          <ul>
+            <li>面向企业级 Multi-Agent 复用和复杂长程任务编排，负责开源框架核心能力建设，重点覆盖 Skill 体系、工具/沙箱执行边界与训练数据回流链路，项目累计获得 <strong>GitHub 1.9k+ Star</strong>，支撑群策导购等业务场景落地。</li>
+            <li><strong>Skill 与长程任务编排：</strong>将 Skill 抽象为可渐进加载的外部化任务知识包（SKILL.md + scripts + references），支持按需加载、作用域隔离、工具权限控制与长程任务状态压缩。</li>
+            <li><strong>工具/沙箱与训练回流：</strong>围绕 Agent 执行过程设计工具调用、权限隔离、可观测日志和失败复现边界；将多轮 Agent 轨迹重组为 step-level decision point 样本，服务下游 SFT / GRPO 训练。</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="resume-section">
+        <h2>其他</h2>
+        <ul class="dot-list other-list">
+          <li><strong>奖项：</strong>中国海洋大学学业奖学金（2024）、ICAN 创新创业大赛国家级三等奖（2019）。</li>
+          <li><strong>语言：</strong>英语（CET-6），良好的英文阅读、写作和沟通技能。</li>
+          <li><strong>开源：</strong>京东开源 OxyGent 框架核心开发者。</li>
+          <li><strong>自我评价：</strong>乐观开朗，善于创新和学习，具有良好的团队协作和抗压能力。</li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
